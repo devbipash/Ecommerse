@@ -38,12 +38,13 @@
     <div class="notification-section notification-section-padding  notification-img ptb-10">
         <div class="container-fluid">
             <div class="notification-wrapper">
-                <div class="notification-pera-graph">
-                    <p>Get A big Discount for Gadgets. 10% to 70% Discount for all products. Save money</p>
+                <div class="notification-pera-graph ml-150 pl-5">
+                    <h3 class="pb-0 mb-0">SELL ON ECOM</h3>
+                     <a class="nav-link pt-0" href="{{ route('shops.create') }}">Open Your Online Shop Now</a>  
                 </div>
                 <div class="notification-btn-close">
                     <div class="notification-btn">
-                        <a href="{{route('home')}}">Shop Now</a>
+                        <a href="{{ route('shops.create') }}">START SELLING</a>
                     </div>
                     <div class="notification-close notification-icon">
                         <button><i class="pe-7s-close"></i></button>
@@ -58,7 +59,7 @@
                 <div class="header-contact-info">
                     <ul>
                         <li><i class="pe-7s-call"></i> +011 2231 4545</li>
-                        <li><i class="pe-7s-mail"></i> <a href="#">company@domail.info</a></li>
+                        <li><i class="pe-7s-mail"></i> <a href="{{route('shops.create')}}">ecom@mail.info</a></li>
                     </ul>
                 </div>
                 <div class="electronics-login-register">
