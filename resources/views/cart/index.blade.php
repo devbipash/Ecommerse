@@ -119,7 +119,6 @@
             </div>
         </div> 
          shopping-cart-area end --}}
-
 <livewire:mall-cart />
 
 

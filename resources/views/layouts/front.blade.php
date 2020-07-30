@@ -64,20 +64,46 @@
                 </div>
                 <div class="electronics-login-register">
                     <ul>
-                        <li><a href="#"><i class="pe-7s-users"></i>My Account</a></li>
-                        <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i class="pe-7s-repeat"></i>Compare</a></li>
+                        <li><a href="{{route('user.dashboard')}}"><i class="pe-7s-users"></i>My Account</a></li>
                         <li><a href="wishlist.html"><i class="pe-7s-like"></i>Wishlist</a></li>
-                        <li><a href="#"><i class="pe-7s-flag"></i>US</a></li>
-                        <li><a class="border-none" href="#"><span>$</span>USD</a></li>
+                        <li>
+                            @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                            @endif
+                            @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                            @endguest
+                        </li>
+                        
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="header-bottom pt-40 pb-30 clearfix">
+        <div class="header-bottom pt-10 pb-10 clearfix">
             <div class="header-bottom-wrapper pr-200 pl-200">
                 <div class="logo-3">
                     <a href="{{route('home')}}">
-                        <img src="assets/img/logo/logo-3.png" alt="">
+                        <h3>ECOM</h3>
                     </a>
                 </div>
                 <div class="categories-search-wrapper">
@@ -97,7 +123,7 @@
                     </div>-->
                     <div class="categories-wrapper">
                         <form action="{{route('products.search')}}" method="GET">
-                            <input name="query"placeholder="Enter Your SEARCH  word" type="text">
+                            <input name="query"placeholder="SEARCH on ECOM" type="text">
                             <button type="submit"> Search </button>
                         </form>
                     </div>
@@ -198,72 +224,8 @@
         </div>
     </header>
     <!-- header end -->
-    <!--ADD NAV-->
-    <nav class="navbar navbar-expand-sm navbar-light bg-white shadow-sm pt-0 pb-0 ">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-
-                        <li class="nav-item">
-                               <h3> <a class="nav-link" href="{{ route('shops.create') }}">Open Your Shop</a> </h3> 
-                            </li>
-                        
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('cart.index') }}"><i class="fas fa-cart-plus">cart</i></a>
-                            </li>
-                            <div class="badge badge-danger">
-                                @auth
-                               {{Cart::session(auth()->id())->getTotalQuantity()}}
-                               @else
-                               0
-                               @endauth
-                            </div>
-                            <!-- Authentication Links -->
-                            @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                            @endif
-                            @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            @endguest
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-    <!--End NAV-->
     
-   
-
-    
-    <div class="electro-product-wrapper wrapper-padding pt-30 pb-45">
+    <div class="electro-product-wrapper wrapper-padding ">
 
         @yield('content')
         
@@ -282,8 +244,8 @@
                                         <span>Address:</span>
                                     </div>
                                     <div class="footer-info-content2">
-                                        <p>77 Seventh Streeth Banasree
-                                            <br>Road Rampura -2100 Dhaka</p>
+                                        <p>22/h Dhakeswari road
+                                            <br>1205- Dhaka</p>
                                     </div>
                                 </div>
                                 <div class="footer-address-electro">
@@ -291,8 +253,8 @@
                                         <span>Phone:</span>
                                     </div>
                                     <div class="footer-info-content2">
-                                        <p>+11 (019) 2518 4203
-                                            <br>+11 (251) 2223 3353</p>
+                                        <p>+11 (019) 0989 0101
+                                            <br>+11 (251) 8888 890</p>
                                     </div>
                                 </div>
                                 <div class="footer-address-electro">
@@ -300,8 +262,8 @@
                                         <span>Email:</span>
                                     </div>
                                     <div class="footer-info-content2">
-                                        <p><a href="#">domain@mail.com</a>
-                                            <br><a href="#">company@domain.info</a></p>
+                                        <p><a href="#">ecom@mail.com</a>
+                                            <br><a href="#">ecom@company.info</a></p>
                                     </div>
                                 </div>
                             </div>

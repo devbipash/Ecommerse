@@ -70,6 +70,9 @@ Route::get('paypal/checkout-cancel', 'PaypalController@cancelPage')->name('paypa
 Route::get('/verify', 'verifyController@getVerify')->name('getVerify');
 Route::post('/verify', 'verifyController@postVerify')->name('Verify');
 
+//User Profile
+
+Route::get('/dashboard', 'UserController@dashboard')->name('user.dashboard')->middleware('auth');
 
 
 
