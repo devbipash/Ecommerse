@@ -74,7 +74,16 @@ Route::post('/verify', 'verifyController@postVerify')->name('Verify');
 
 Route::get('/dashboard', 'UserController@dashboard')->name('user.dashboard')->middleware('auth');
 
+//Contact
 
+Route:: get ('/contact', function () {
+   return view('contact');
+
+});
+
+// Slider
+
+Route::resource('slider', 'SliderController')->middleware('auth');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

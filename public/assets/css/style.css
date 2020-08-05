@@ -2203,7 +2203,7 @@ a.banner-book-style-btn:hover {
     content: none;
 }
 .header-top-wrapper-2 {
-  padding: 13px 0 3px;
+ padding: 0; 
 }
 .header-contact-info li a:hover,
 .electronics-login-register ul li a:hover {
